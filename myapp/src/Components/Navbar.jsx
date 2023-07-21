@@ -217,7 +217,7 @@ const Navbar = () => {
 
                     <div className='cart' >
 
-                        <Link id="cart_tag" to="/productpage" style={{ display: "flex", textAlign: "center", gap: "8px" }}>
+                        <Link id="cart_tag" to="/payment" style={{ display: "flex", textAlign: "center", gap: "8px" }}>
                             <MdShoppingCartCheckout style={{ marginTop: "3px" }} />
                             Cart
                         </Link>

@@ -1,43 +1,30 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 
 import InputControl from "../InputControl/InputControl";
-import { auth } from "../config";
+
 
 import styles from "./Signup.module.css";
+import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     email: "",
-    pass: "",
+    password: "",
   });
-  const [errorMsg, setErrorMsg] = useState("");
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+  
 
   const handleSubmission = () => {
-    if (!values.name || !values.email || !values.pass) {
-      setErrorMsg("Fill all fields");
-      return;
+    if (!values.name || !values.email || !values.password) {
+     alert("Enter all field")
+      return ;
     }
-    setErrorMsg("");
-
-    setSubmitButtonDisabled(true);
-    createUserWithEmailAndPassword(auth, values.email, values.pass)
-      .then(async (res) => {
-        setSubmitButtonDisabled(false);
-        const user = res.user;
-        await updateProfile(user, {
-          displayName: values.name,
-        });
-        navigate("/login");
-      })
-      .catch((err) => {
-        setSubmitButtonDisabled(false);
-        setErrorMsg(err.message);
-      });
+   else{
+    axios.post("https://fair-tan-indri-ring.cyclic.app/user/signup",values).then((res)=>{alert(res.data.msg);navigate('/login')}).catch(e=>{console.log(e)})
+   }
   };
 
   return (
@@ -63,13 +50,13 @@ function Signup() {
           label="Password"
           placeholder="Enter password"
           onChange={(event) =>
-            setValues((prev) => ({ ...prev, pass: event.target.value }))
+            setValues((prev) => ({ ...prev, password: event.target.value }))
           }
         />
 
         <div className={styles.footer}>
-          <b className={styles.error}>{errorMsg}</b>
-          <button onClick={handleSubmission} disabled={submitButtonDisabled}>
+          <b className={styles.error}>{}</b>
+          <button onClick={handleSubmission} >
             Signup
           </button>
           <p>

@@ -10,26 +10,26 @@ const ProductPage=()=>{
     let initialPage=searchParams.get(Number("page"))
     const[page,setPage]=useState(initialPage||1)
     
-    let paramsObj={
-        params: {
-          category: searchParams.get("category"),
-          brand:searchParams.get("brand")&&searchParams.get("brand"),
-          _sort:searchParams.get("order")&&"price",
-          _order:searchParams.get("order"),
-          _page:searchParams.get("page")
-        }
-      }
-      function handleClick(unit){
-        setPage(page+unit)
-      }
+    // let paramsObj={
+    //     params: {
+    //       category: searchParams.get("category"),
+    //       brand:searchParams.get("brand")&&searchParams.get("brand"),
+    //       _sort:searchParams.get("order")&&"price",
+    //       _order:searchParams.get("order"),
+    //       _page:searchParams.get("page")
+    //     }
+    //   }
+    //   function handleClick(unit){
+    //     setPage(page+unit)
+    //   }
 
     const dispatch=useDispatch()
     const store=useSelector((state)=>state.AuthReducer)
     const {productData}=store;
-    // console.log(productData)
+    console.log("productData",productData)
     useEffect(()=>{
-        dispatch(getProducts(paramsObj))
-    },[searchParams])
+        dispatch(getProducts())
+    },[])
     return<Box>
         {/* <Heading>{count}</Heading> */
     
@@ -59,14 +59,16 @@ const ProductPage=()=>{
 }
 
 
-        <JsonServerFunctionalities page={page}/>
+        {/* <JsonServerFunctionalities page={page}/> */}
     <Grid templateColumns={{xl:'repeat(3, 1fr)' ,lg:'repeat(3, 1fr)' ,base:'repeat(1, 1fr)' }}  >
-        {productData?.map(({img,price,brand,title,id})=><ProductCard key={id} id={id} title={title.substring(0,50)} price={price} brand={brand} img={img} />)}
+        {productData.products?.map(({image,price,brand,title,_id,description,quantity,category,rating})=><ProductCard key={_id} _id={_id} title={title.substring(0,50)} price={price} brand={brand} image={image} 
+        description={description} quantity={quantity} category={category} rating={rating}
+        />)}
     </Grid>
     <Box style={{border:"0px solid red",textAlign:"center"}}>
-        <Button isDisabled={page===1} onClick={()=>handleClick(-1)}>prev</Button>
+        {/* <Button isDisabled={page===1} onClick={()=>handleClick(-1)}>prev</Button>
         <Button isDisabled>{page}</Button>
-        <Button isDisabled={page>3} onClick={(e)=>handleClick(1)}>next</Button>
+        <Button isDisabled={page>3} onClick={(e)=>handleClick(1)}>next</Button> */}
         </Box>
     
     </Box>

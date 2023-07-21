@@ -3,42 +3,32 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
 import InputControl from "../InputControl/InputControl";
 
 
 import styles from "./Login.module.css";
-import { auth } from "../config";
-import LoginGoogle from "./LoginGoogle";
+import axios from "axios";
+
 
 function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
-    pass: "",
+    password: "",
   });
-  const [errorMsg, setErrorMsg] = useState("");
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+ 
 
   const handleSubmission = () => {
-    if (!values.email || !values.pass) {
-      setErrorMsg("Fill all fields");
+    if (!values.email || !values.password) {
+      alert("Enter all Field")
       return;
     }
-    setErrorMsg("");
-
-    setSubmitButtonDisabled(true);
-    signInWithEmailAndPassword(auth, values.email, values.pass)
-      .then(async (res) => {
-        setSubmitButtonDisabled(false);
-        
-        navigate("/");
-      })
-      .catch((err) => {
-        setSubmitButtonDisabled(false);
-        setErrorMsg(err.message);
-      });
+   else{
+   axios.post(`https://fair-tan-indri-ring.cyclic.app/user/signin`,values).then((res)=>{console.log(res);
+    alert(res.data.msg);localStorage.setItem("userShop",JSON.stringify(res.data.token));navigate("/")}).catch(e=>console.log(e))
+   }
+   
   };
   return (
     <div className={styles.container}>
@@ -55,14 +45,14 @@ function Login() {
         <InputControl
           label="Password"
           onChange={(event) =>
-            setValues((prev) => ({ ...prev, pass: event.target.value }))
+            setValues((prev) => ({ ...prev, password: event.target.value }))
           }
           placeholder="Enter Password"
         />
 
         <div className={styles.footer}>
-          <b className={styles.error}>{errorMsg}</b>
-          <button disabled={submitButtonDisabled} onClick={handleSubmission}>
+          <b className={styles.error}>{}</b>
+          <button onClick={handleSubmission}>
             Login
           </button>
           <p>

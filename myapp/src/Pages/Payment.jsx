@@ -7,7 +7,7 @@ import { Button, useToast,Card , Flex, Grid, Heading, Image, Radio,Box,Text,Form
   PopoverCloseButton,
  
 } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import logo1 from "../images/mastercard.png"
 import logo2 from "../images/amazon.png"
 import logo3 from "../images/applepay.png"
@@ -15,6 +15,7 @@ import logo4 from "../images/googlepay.png"
 import { isDisabled } from '@testing-library/user-event/dist/utils'
 import styles from "../styles/payment.module.css"
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const initState={
   firstName:'',
@@ -27,30 +28,64 @@ const initState={
 }
 
 const Payment = () => {
-    const toast = useToast()
+  const AuthToken=JSON.parse(localStorage.getItem("userShop")) || ""
 
+
+    const toast = useToast()
 
     const [address,setAddress]=useState(initState)
 
     const [data,setData]=useState([])
 
     const [state,setState]=useState('')
+    const [cart,setCart]=useState([])
 
     const handleSubmit=()=>{
  
  console.log("Hello")
  
   setData([...data,address]);
- 
-  
-
   setAddress(initState)
-
-
     }
     
+  useEffect(()=>{
+  axios.get(`https://fair-tan-indri-ring.cyclic.app/cart`,{
+ headers:{
+  Authorization:`Bearer ${AuthToken}`
+ }
+  }).then((res)=>{setCart(res.data.cart);console.log(res)}).catch(e=>console.log(e))
+  },[])
 
-    console.log(state)
+  let totalAmount=0;
+for(let i=0;i<cart?.length;i++){
+  totalAmount+=cart[i].price * cart[i].quantity
+}
+let taxAmount=Math.floor(totalAmount*0.1)
+
+const handleAdd=(id,quantity)=>{
+  const val=quantity+1
+   fetch(`https://fair-tan-indri-ring.cyclic.app/cart/update/${id}`,{
+    method:"PATCH",
+    headers:{
+      "Content-Type":"application/json",
+      Authorization : `Bearer ${AuthToken}`
+    },
+    body:JSON.stringify({quantity:val})
+   }).then(res=>res.json()).then((res)=>{window.location.reload()}).catch(e=>console.log(e))
+
+}
+const handleSubtract=(id,quantity)=>{
+  const val=quantity-1
+  fetch(`https://fair-tan-indri-ring.cyclic.app/cart/update/${id}`,{
+   method:"PATCH",
+   headers:{
+     "Content-Type":"application/json",
+     Authorization : `Bearer ${AuthToken}`
+   },
+   body:JSON.stringify({quantity:val})
+  }).then(res=>res.json()).then((res)=>{window.location.reload()}).catch(e=>console.log(e))
+
+}
 
   return (
     
@@ -64,24 +99,33 @@ const Payment = () => {
      <Box className="Left" >
         <Box border={'1px solid gray'} borderRadius={10} p={"15"}>
             <Heading size={{xl:'md',lg:'md',base:'sm'}}>Review Item And Shipping</Heading>
-         <Flex justify={'space-between'} align={'center'} mt={6} mb={25} flexDirection={{xl:'row',lg:'row',base:'column'}}>
-            <Flex align={'center'} gap={10} flexDirection={{xl:'row',lg:'row',base:'column'}}>
+            {cart?.map((item,i)=>{
+     return  <Flex justify={'space-between'} align={'center'} mt={6} mb={25} flexDirection={{xl:'row',lg:'row',base:'column'}}>
 
-            <Box  w={'100px'} bg='blue.300' borderRadius={'12px'}>
-            <Image src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png"/>
-            </Box>
-            <Box>
-            <Heading size={{xl:'md',lg:'md',base:'sm'}}>Airpod:Max</Heading>
-            <Text fontWeight={'bold'} mt={2} size={{xl:'md',lg:'md',base:'sm'}}>Color:Pink</Text>
-            </Box>
-            </Flex>
+      <Flex align={'center'} gap={10} flexDirection={{xl:'row',lg:'row',base:'column'}}>
 
-            <Box textAlign={'right'}>
-                <Heading size={{xl:'md',lg:'md',base:'sm'}} mr={5}>$549.00</Heading>
-                <Text fontWeight={'bold'} mr={5} size={{xl:'md',lg:'md',base:'sm'}} >Quantity:1</Text>
-            </Box>
 
-         </Flex>
+      <Box  w={'100px'} bg='blue.300' borderRadius={'12px'}>
+      <Image src={item.image}/>
+      </Box>
+      <Box>
+      <Heading size={{xl:'md',lg:'md',base:'sm'}}>{item.brand}</Heading>
+      <Text  mt={2} fontSize={'2vh'} color={'blue'}>{item.title}</Text>
+      </Box>
+      </Flex>
+
+      <Box textAlign={'right'}>
+          <Heading size={{xl:'md',lg:'md',base:'sm'}} mr={5}>$ {item.price * item.quantity}</Heading>
+          <Flex align={'center'} mt={'2vh'} gap={'2vh'}>
+            <Button onClick={()=>handleAdd(item._id,item.quantity)}>+</Button>
+          <Text fontWeight={'bold'}  size={{xl:'md',lg:'md',base:'sm'}} >{item.quantity}</Text>
+            <Button onClick={()=>handleSubtract(item._id,item.quantity)}>-</Button>
+          </Flex>
+      </Box>
+
+   </Flex>
+  })}
+       
         </Box>
         <Radio m={"15px 0 15px 0"}>Returning Customer?</Radio>
         <Box border={'1px solid gray'}  borderRadius={10} p={"25"}>
@@ -265,11 +309,11 @@ const Payment = () => {
 <Box mt={10} p={10} fontWeight={'bold'}>
 <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} mt={5}>
     <Text>Sub Total</Text>
-    <Text>$549.00</Text>
+    <Text>${totalAmount}</Text>
 </Flex>
 <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} >
     <Text>Tax(10%)</Text>
-    <Text>$54.90</Text>
+    <Text>${taxAmount}</Text>
 </Flex>
 <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} >
     <Text>Coupon Discount</Text>
@@ -282,7 +326,7 @@ const Payment = () => {
 <Box borderBottom={'1px solid gray'}  ></Box>
 <Flex justify={'space-between'} flexDirection={{xl:'row',lg:'row',base:'column'}} mt={5}>
     <Text>Total</Text>
-    <Text>=$494.10</Text>
+    <Text>=${Math.floor(totalAmount + taxAmount - 54.90)}</Text>
 </Flex>
 
 </Box>
@@ -324,4 +368,4 @@ bg={"#003D29"} color={'white'} ml={5} mb={10} w={{xl:500,lg:500,base:100}} borde
   )
 }
 
-export default Payment
+export default memo(Payment)
