@@ -3,15 +3,29 @@ import styles from "../styles/ProductCard.module.css"
 import React, { memo, useState } from 'react'
 import star from "../images/star.png"
 import { Link } from 'react-router-dom'
-const ProductCard = ({ img, price, brand, title, id }) => {
-    console.log("invoke", id)
+const ProductCard = ({ image, price, brand, title, _id,description,quantity,category,rating }) => {
+    console.log("invoke", _id)
+const AuthToken=JSON.parse(localStorage.getItem("userShop")) || ""
+    const handleCart=()=>{
+   let obj={image,price,brand,title,description,quantity,category,rating}
+   console.log(obj)
+   fetch(`https://fair-tan-indri-ring.cyclic.app/cart/create`,{
+    method:"POST",
+    headers:{
+        "Content-Type":"application/json",
+        Authorization:`Bearer ${AuthToken}`
+    },
+    body:JSON.stringify(obj)
+   }).then(res=>res.json()).then((res)=>{alert(res.msg)}).catch(e=>console.log(e))
+}
+
     return (
         <div style={{ margin: "50px" }}>
             <Card maxW='sm' >
                 <CardBody>
-                    <Link to={`/products/${id}`}>
+                    <Link >
                         <Image
-                            src={img[0]}
+                            src={image[0]}
                             alt='Gaming Headphone'
                             borderRadius='lg'
                             w="100px" h="100px"
@@ -40,7 +54,9 @@ const ProductCard = ({ img, price, brand, title, id }) => {
                 <CardFooter>
                     <ButtonGroup spacing='2'>
                         <Button style={{ borderRadius: "30px", padding: "20px 15px", backgroundColor: "#003d29", color: "white" }} colorScheme="teal"
-                            variant='outline'>
+                            variant='outline'
+                            onClick={handleCart}
+                            >
                             Add to cart
                         </Button>
                     </ButtonGroup>
