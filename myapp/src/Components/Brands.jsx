@@ -4,8 +4,8 @@ import { Heading } from '@chakra-ui/react'
 
 const Brands = () => {
     return (
-        <div>
-            <section className="choose-brand-area">
+        <div >
+            <section className="choose-brand-area" >
                 <div className="container">
                     <div className="section-title-wrap">
                         <Heading as='h3' size='lg' mb='5'>Choose by Brand</Heading>

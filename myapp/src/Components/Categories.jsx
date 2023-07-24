@@ -20,7 +20,7 @@ const Categories = () => {
                             alt=""
                         />
                     </div>
-                    <div class="text-on-image">
+                    <div className="text-on-image">
                         <Text fontSize='20px' color='white' as='b'>
                             Sofa
                         </Text>
@@ -34,7 +34,7 @@ const Categories = () => {
                             alt=""
                         />
                     </div>
-                    <div class="text-on-image">
+                    <div className="text-on-image">
                         <Text fontSize='20px' color='white' as='b'>
                             Hand Bags
                         </Text>
@@ -48,7 +48,7 @@ const Categories = () => {
                             alt=""
                         />
                     </div>
-                    <div class="text-on-image">
+                    <div className="text-on-image">
                         <Text fontSize='20px' color='white' as='b'>
                             Books
                         </Text>
@@ -62,7 +62,7 @@ const Categories = () => {
                             alt=""
                         />
                     </div>
-                    <div class="text-on-image">
+                    <div className="text-on-image">
                         <Text fontSize='20px' color='white' as='b'>
                             Tech
                         </Text>
@@ -76,7 +76,7 @@ const Categories = () => {
                             alt=""
                         />
                     </div>
-                    <div class="text-on-image">
+                    <div className="text-on-image">
                         <Text fontSize='20px' color='white' as='b'>
                             Sneakers
                         </Text>
@@ -86,7 +86,7 @@ const Categories = () => {
                     <div>
                         <img className='categories' src="https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e570738029a725e686_Furniture-min.png" alt="" />
                     </div>
-                    <div class='text-on-image'>
+                    <div className='text-on-image'>
                         <Text fontSize='20px' color='white' as='b'>
                             Travel
                         </Text>
