@@ -30,9 +30,11 @@ cartRoute.post('/create',async(req,res)=>{
 })
 
 cartRoute.get("/",async(req,res)=>{
+    const userId=req.body.userId
     try {
-        let cart=await cartModel.find()
-        res.status(200).json({cart})
+         let cart=await cartModel.find({userId})
+         res.status(200).json({cart})
+    
     } catch (error) {
         res.status(400).json({error:error.message})
     }
@@ -75,5 +77,23 @@ cartRoute.delete("/delete/:id",async(req,res)=>{
         res.status(400).json({error:error.message})
     }
 })
+
+cartRoute.delete("/deleteall/:userIdinDoc", async (req, res) => {
+    const { userIdinDoc } = req.params;
+    try {
+      const cart = await cartModel.findOne({ userId: userIdinDoc });
+      if (cart) {
+        await cartModel.deleteMany({ userId: userIdinDoc });
+        res.status(200).json({ msg: `All data for userId ${cart.userName} Successfully Deleted` });
+      } else {
+        res.status(400).json({ msg: "No data found for the given userId" });
+      }
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+  });
+  
+
+
 
 module.exports=cartRoute
