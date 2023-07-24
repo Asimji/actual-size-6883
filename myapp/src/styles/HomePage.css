@@ -7,7 +7,7 @@
   border-radius: 15px;
 }
 .categories_section{
-  margin-bottom: 400px;
+  margin-bottom: 20vh;
 }
 .head-text {
   position: relative;
@@ -22,7 +22,7 @@
 }
 .categories_section {
   /* margin-top: 50px; */
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 /* Categories responsiveness */
 /* For laptop screens */

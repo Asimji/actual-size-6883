@@ -4,12 +4,11 @@ import React, { memo, useState } from 'react'
 import star from "../images/star.png"
 import { Link } from 'react-router-dom'
 const ProductCard = ({ image, price, brand, title, _id,description,quantity,category,rating }) => {
-    console.log("invoke", _id)
 const AuthToken=JSON.parse(localStorage.getItem("userShop")) || ""
     const handleCart=()=>{
    let obj={image,price,brand,title,description,quantity,category,rating}
    console.log(obj)
-   fetch(`https://fair-tan-indri-ring.cyclic.app/cart/create`,{
+   fetch(`${process.env.REACT_APP_URL}/cart/create`,{
     method:"POST",
     headers:{
         "Content-Type":"application/json",
@@ -23,7 +22,7 @@ const AuthToken=JSON.parse(localStorage.getItem("userShop")) || ""
         <div style={{ margin: "50px" }}>
             <Card maxW='sm' >
                 <CardBody>
-                    <Link >
+                    <Link to={`/products/${_id}`}>
                         <Image
                             src={image[0]}
                             alt='Gaming Headphone'

@@ -6,14 +6,14 @@ body {
   #two {
     background-color: white;
     display: inline-block;
-    height: 280px;
+    /* height: 280px; */
     position: absolute;
     top: 60px;
     width: 340px;
     height: auto;
     /* height: 340px; */
     max-height: 340px;
-    margin-left: -39px;
+    /* margin-left: -39px; */
     z-index: 1;
     overflow: hidden;
     border: black;
@@ -22,7 +22,7 @@ body {
   }
   #result {
     list-style: none;
-    padding: 15px 4px 5px 12px;
+    /* padding: 15px 4px 5px 12px; */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -37,7 +37,7 @@ body {
   
     height: 80px;
     overflow: hidden;
-    margin-top: 1px;
+    /* margin-top: 1px; */
   }
   
   #navbar {
@@ -81,8 +81,8 @@ body {
   }
   #logo {
     height: 36px;
-    margin-bottom: 10px;
-    margin-left: 20px;
+    /* margin-bottom: 10px; */
+    /* margin-left: 20px; */
   }
   img {
     width: 100%;
@@ -126,7 +126,7 @@ body {
   
   .div1 > span {
     /* border-right: 3px solid blue; */
-    margin-left: -370px;
+    /* margin-left: -370px; */
     /* margin-left: 200px; */
   
     text-align: center;
@@ -140,7 +140,7 @@ body {
     border-radius: 5px;
     background-color: rgb(247, 247, 252);
     /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-    padding-left: 10px;
+    /* padding-left: 10px; */
     border-left: 1px solid blue;
     border: 0;
   }
@@ -153,7 +153,7 @@ body {
   #other_div {
     /* border:1px solid gold; */
     display: flex;
-    margin-left: 380px;
+    /* margin-left: 380px; */
   
     justify-content: space-evenly;
     width: 250px;
@@ -213,7 +213,7 @@ body {
   }
   ul {
     /* border: 2px solid red; */
-    margin-left: 40px;
+    /* margin-left: 40px; */
   }
   
   #asim1,
@@ -242,7 +242,7 @@ body {
     text-align: left;
   }
   
-  #asim1 {
+  /* #asim1 {
     margin-left: -80px;
   }
   #asim2 {
@@ -256,16 +256,16 @@ body {
   }
   #asim5 {
     margin-left: -290px;
-  }
+  } */
   
   #asim7 {
-    margin-left: -150px;
+    /* margin-left: -150px; */
     text-align: left;
-    margin-top: 10px;
+    /* margin-top: 10px; */
   }
   
   #ls {
-    margin-left: 15px;
+    /* margin-left: 15px; */
     background-color: white;
     color: grey;
     font-weight: 600;
@@ -279,12 +279,12 @@ body {
   }
   
   #lp {
-    margin-left: 15px;
+    /* margin-left: 15px; */
   }
   
   #lh5 {
     text-align: left;
-    padding-left: 15px;
+    /* padding-left: 15px; */
   }
   #lh5:hover {
     color: blue;
@@ -295,7 +295,7 @@ body {
     color: white;
     border: 0;
     height: 30px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
     border-radius: 0px 5px 5px 5px;
     width: 100px;
   }
@@ -366,7 +366,7 @@ body {
   #d4,
   #d5,
   #d6 {
-    margin-left: 30px;
+    /* margin-left: 30px; */
   }
   
   #d4 {
@@ -415,8 +415,8 @@ body {
   }
   
   #b {
-    margin-right: 40px;
-    margin-bottom: 20px;
+    /* margin-right: 40px;
+    margin-bottom: 20px; */
     /* margin-top:20px; */
   }
   
@@ -432,13 +432,13 @@ body {
   
   sup {
     color: blue;
-    margin-left: 2px;
+    /* margin-left: 2px; */
     font-size: 12px;
   }
   
   .last {
     /* border: 2px solid blue; */
-    margin-right: 100px;
+    /* margin-right: 100px; */
     display: flex;
     gap: 30px;
     align-items: center;

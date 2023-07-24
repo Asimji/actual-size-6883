@@ -2,21 +2,22 @@
   box-sizing: border-box;
 }
 .choose-brand-area {
-  padding-bottom: 80px;
+  /* padding-bottom: 80px; */
+
+
 }
 .container {
-  overflow: hidden;
-  width: 100%;
-  max-width: 1360px;
-  margin-right: auto;
-  margin-left: auto;
+  object-fit: fill;
+  /* max-width: 1360px; */
+
+  width: 100vh;
+
 }
 @media screen and (max-width: 767px) {
   .container {
-    padding-right: 15px;
-    padding-left: 15px;
+   
     /* margin-top: 400px; */
-    /* border: 1px solid red */
+    /* display: none; */
   }
 }
 .section-title-wrap {
@@ -28,6 +29,7 @@
   grid-column-gap: 23px;
   grid-row-gap: 16px;
   grid-template-columns: repeat(4, 1fr);
+  /* width: 100%; */
 }
 
 .choose-brand-single-item {

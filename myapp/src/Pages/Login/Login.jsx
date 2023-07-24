@@ -25,7 +25,7 @@ function Login() {
       return;
     }
    else{
-   axios.post(`https://fair-tan-indri-ring.cyclic.app/user/signin`,values).then((res)=>{console.log(res);
+   axios.post(`${process.env.REACT_APP_URL}/user/signin`,values).then((res)=>{console.log(res);
     alert(res.data.msg);localStorage.setItem("userShop",JSON.stringify(res.data.token));navigate("/")}).catch(e=>console.log(e))
    }
    

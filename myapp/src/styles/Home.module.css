@@ -36,6 +36,7 @@
   display: flex;
   justify-content: space-between;
   margin: 30px 60px;
+
 }
 @media (min-width: 0px) and (max-width: 850px) {
   .cardproductcontainer {
@@ -68,7 +69,7 @@
 
 .main {
   position: relative;
-  top: -350px;
+  /* top: -350px; */
   margin-bottom: "-350px";
 }
 
@@ -169,7 +170,7 @@
   box-shadow: -2px -2px -2px rgba(226, 12, 12, 0.1),
     2px 2px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-top: -250px;
+  /* margin-top: -250px; */
   padding: 0px 80px 0px 80px ;
   margin-right: 80px;
   /* overflow: ; */

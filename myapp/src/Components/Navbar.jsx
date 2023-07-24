@@ -1,16 +1,20 @@
 import React from 'react'
 import "../styles/Navbar.css"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from "../images/ShopCart.png"
 
 
 import { MdShoppingCartCheckout } from "react-icons/md";
 import { ImUser } from "react-icons/im";
 import { ImSearch } from "react-icons/im";
-import Login from '../Pages/Login/Login';
 
 
 const Navbar = () => {
+
+    const AuthToken=JSON.parse(localStorage.getItem("userShop")) || ""
+
+    const navigate=useNavigate()
+
     return <div className="nav_up" >
         <div id="navbar" >
 
@@ -20,13 +24,13 @@ const Navbar = () => {
 
 
                 <div className="logo_div">
-                    <Link to="/"> <img style={{ width: "150px", border: "0px solid red", height: "50px" }} id="logo" src={logo} alt='logo' /></Link>
+                    <Link to="/"> <img  id="logo" src={logo} alt='logo' /></Link>
                 </div>
 
-                <div className="menu_div " style={{ padding: "10px" }}>
+                <div className="menu_div " >
 
                     <div id="main_div">
-                        <Link id="button" to="/productpage" style={{ fontSize: "20px" }} >Categories</Link>
+                        <Link id="button" to="/productpage"  >Categories</Link>
                         <div id="asim1">
                             <div id="b">
                                 <div className="div" id="d1">
@@ -107,7 +111,7 @@ const Navbar = () => {
 
 
                     <div id="main_div" className='del'>
-                        <Link id="button" to="/productpage" style={{ fontSize: "20px" }}>Deals</Link>
+                        <Link id="button" to="/productpage" >Deals</Link>
 
                     </div>
 
@@ -117,14 +121,14 @@ const Navbar = () => {
 
 
                     <div id="main_div" className='del'>
-                        <Link id="button" to="/productpage" style={{ fontSize: "20px" }}>What's New</Link>
+                        <Link id="button" to="/productpage" >What's New</Link>
 
                     </div>
 
 
 
                     <div id="main_div" className='del' >
-                        <Link id="button" to="/productpage" style={{ fontSize: "20px" }}>Delivery</Link>
+                        <Link id="button" to="/productpage" >Delivery</Link>
 
                     </div>
 
@@ -144,14 +148,14 @@ const Navbar = () => {
 
             {/* <!-- search part here  --> */}
 
-            <div className="parent-box-2" style={{ paddingTop: "20px" }}>
+            <div className="parent-box-2" >
 
-                <div className="div1" style={{ display: "flex" }}>
+                <div className="div1" >
 
 
                     <input type="text" name="" id="search" placeholder="Search" />
 
-                    <span id='ImSearch' > <ImSearch style={{ marginTop: "10px" }} /></span>
+                    <span id='ImSearch' > <ImSearch  /></span>
 
                     <div id="two" ></div>
 
@@ -161,13 +165,13 @@ const Navbar = () => {
                 </div>
 
 
-
+              
 
                 <div className='last'>
                     <div id="main_div">
 
                         <h5 id="profile_tag">
-                            <Link to="/productpage" style={{ display: "flex", alignItems: "center", marginBottom: "30px", gap: "5px" }}>
+                            <Link to="/productpage" style={{ display: "flex", alignItems: "center", gap: "5vh" }}>
                                 <span > <ImUser /></span>
 
                                 Account
@@ -178,7 +182,10 @@ const Navbar = () => {
                                 <div className="div" id="d1">
                                     <h5 id="lh5">Welcome</h5>
                                     <p id="lp">To access account and manage order</p>
-                                    <button id="ls"><Link to="/login">Login</Link></button>
+                                    {AuthToken ?<button id="ls"
+                                    onClick={()=>{localStorage.removeItem("userShop");navigate("/")}}
+                                    >Logout</button>  : <button id="ls"><Link to="/login">Login/SignUp</Link></button>}
+                             
                                     <br />
                                     <>
                                         <ul style={{ textAlign: "left" }}>
@@ -217,8 +224,8 @@ const Navbar = () => {
 
                     <div className='cart' >
 
-                        <Link id="cart_tag" to="/payment" style={{ display: "flex", textAlign: "center", gap: "8px" }}>
-                            <MdShoppingCartCheckout style={{ marginTop: "3px" }} />
+                        <Link id="cart_tag" to="/payment" style={{ display: "flex", textAlign: "center", gap: "8vh" }}>
+                            <MdShoppingCartCheckout />
                             Cart
                         </Link>
                     </div>

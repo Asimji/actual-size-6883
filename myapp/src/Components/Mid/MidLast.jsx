@@ -7,7 +7,7 @@ import Discount from './Discount';
 
 const MidLast = () => {
   return (
-    <Box fontFamily={"'Inter', sans-serif"}  ml={100} mr={100} mb={50}>
+    <Box fontFamily={"'Inter', sans-serif"} mb={50}>
         <Discount/>
 
     <Grid mt={100} templateColumns={{xl:'repeat(2, 1fr)' ,lg:'repeat(2, 1fr)' ,base:'repeat(1, 1fr)' }} gap={5}>
@@ -17,6 +17,7 @@ const MidLast = () => {
       src='https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e6cd3678e82164f755_furniture%20village-min.png'
       alt='Green double couch with wooden legs'
       borderTopRadius='lg'
+    
     />
     <Stack mt='6' spacing='3' ml={6}>
       <Heading size='md'>Furniture Village</Heading>
@@ -42,6 +43,7 @@ const MidLast = () => {
       src='https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e6037f3b456acf2024_Fashion%20world-min.png'
       alt='Green double couch with wooden legs'
       borderTopRadius='lg'
+      objectFit={'cover'}
       />
     <Stack mt='6' spacing='3' ml={6}>
       <Heading size='md'>Fashion World</Heading>
@@ -65,7 +67,7 @@ const MidLast = () => {
 
     </Grid>
 
-    <Heading mt={20} fontsize='20px'>Best Selling Store</Heading>
+    <Heading mt={20} fontSize='20px'>Best Selling Store</Heading>
 
     <Grid templateColumns={{xl:'repeat(4, 1fr)',lg:'repeat(4, 1fr)',md:'repeat(2, 1fr)',sm:'repeat(1, 1fr)',base:'repeat(1, 1fr)'}} gap={2} mt={8} >
  <Box>
@@ -142,7 +144,7 @@ const MidLast = () => {
  </Box>
 
     </Grid >
-    <Heading mt={20} fontsize='20px'>Services To Help You Shop</Heading>
+    <Heading mt={20} fontSize={'10vh'}>Services To Help You Shop</Heading>
     <Grid templateColumns={{xl:'repeat(3, 1fr)',lg:'repeat(3, 1fr)',md:'repeat(2, 1fr)',sm:'repeat(1, 1fr)',base:'repeat(1, 1fr)'}} gap={5} mt={8} >
         <Card bg={'#f5f6f6'} borderRadius='md' >
           <Stack gap={5} ml={6} p={10} >

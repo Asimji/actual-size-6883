@@ -23,7 +23,7 @@ function Signup() {
       return ;
     }
    else{
-    axios.post("https://fair-tan-indri-ring.cyclic.app/user/signup",values).then((res)=>{alert(res.data.msg);navigate('/login')}).catch(e=>{console.log(e)})
+    axios.post(`${process.env.REACT_APP_URL}/user/signup`,values).then((res)=>{alert(res.data.msg);navigate('/login')}).catch(e=>{console.log(e)})
    }
   };
 
